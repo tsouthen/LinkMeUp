@@ -1,0 +1,77 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.popup {
+  min-width: 260px;
+  min-height: 180px;
+  background: var(--popup-bg, #fff);
+  color: var(--popup-fg, #222);
+  border-radius: 12px;
+  box-shadow: 0 2px 16px #0002;
+  padding: 1.5em 1em 1em 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.2s, color 0.2s;
+}
+.popup.dark {
+  --popup-bg: #23272f;
+  --popup-fg: #f3f3f3;
+  background: var(--popup-bg);
+  color: var(--popup-fg);
+}
+.popup button {
+  width: 180px;
+  margin: 0 auto;
+  font-size: 1.1em;
+  background: #646cff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7em 0;
+  margin-bottom: 0.2em;
+  transition: background 0.2s;
+}
+.popup button:hover {
+  background: #535bf2;
+}

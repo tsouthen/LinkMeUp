@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "LinkMeUp",
+  "version": "1.0.0",
+  "description": "Create and copy links from the current tab as HTML, Markdown, or Plain text.",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "LinkMeUp"
+  },
+  "icons": {
+    "16": "vite.svg",
+    "48": "vite.svg",
+    "128": "vite.svg"
+  }
+}
