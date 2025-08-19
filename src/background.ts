@@ -24,6 +24,16 @@ chrome.commands.onCommand.addListener(async (command) => {
     const tab = tabs[0];
     if (!tab || !tab.url || !tab.title) return;
 
-    await copyToClipboard({ url: tab.url, title: tab.title }, command.substring(5));
+    const copyType = command.substring(5);
+    if (!isValidCopyType(copyType)) return;
+    const textToCopy = getCopyFormats(tab.url, tab.title)[copyType];
+
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id! },
+      func: (text: string) => {
+        navigator.clipboard.writeText(text);
+      },
+      args: [textToCopy],
+    });
   });
 });
