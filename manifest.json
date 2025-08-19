@@ -3,14 +3,42 @@
   "name": "LinkMeUp",
   "version": "1.0.0",
   "description": "Create and copy links from the current tab as HTML, Markdown, or Plain text.",
-  "permissions": ["activeTab", "scripting"],
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "clipboardWrite"
+  ],
   "action": {
     "default_popup": "index.html",
     "default_title": "LinkMeUp"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
   },
   "icons": {
     "16": "vite.svg",
     "48": "vite.svg",
     "128": "vite.svg"
+  },
+  "commands": {
+    "copy-markdown": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1"
+      },
+      "description": "Copy link as Markdown"
+    },
+    "copy-html": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+2"
+      },
+      "description": "Copy link as HTML"
+    },
+    "copy-text": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+3"
+      },
+      "description": "Copy link as text"
+    }
   }
 }
