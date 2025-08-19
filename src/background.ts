@@ -1,9 +1,14 @@
-function getCopyFormats(url: string, title: string) {
-  return {
-    html: `<a href="${url}">${title}</a>`,
-    markdown: `[${title}](${url})`,
-    text: `${title} - ${url}`,
-  };
+function getLinkData(url: string, title: string, type: CopyType): ClipboardItem {
+  if (type === "html") {
+    const data = `<a href="${url}">${title}</a>`;
+    return new ClipboardItem({
+      "text/html": new Blob([data], { type: "text/html" }),
+      "text/plain": new Blob([url], { type: "text/plain" }),
+    });
+  }
+
+  const data = type === "markdown" ? `[${title}](${url})` : `${title} - ${url}`;
+  return new ClipboardItem({ ["text/plain"]: new Blob([data], { type: "text/plain" }) });
 }
 
 type CopyType = "html" | "markdown" | "text";
@@ -14,26 +19,25 @@ function isValidCopyType(type: string): type is CopyType {
 
 export async function copyToClipboard(tab: { url: string; title: string }, type: string) {
   if (!isValidCopyType(type)) return;
-  const formats = getCopyFormats(tab.url, tab.title);
-  await navigator.clipboard.writeText(formats[type]);
+  const linkData = getLinkData(tab.url, tab.title, type);
+  await navigator.clipboard.write([linkData]);
 }
 
-chrome.commands.onCommand.addListener(async (command) => {
-  chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+chrome.commands.onCommand.addListener((command) => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (!command.startsWith("copy-")) return;
     const tab = tabs[0];
     if (!tab || !tab.url || !tab.title) return;
 
-    const copyType = command.substring(5);
+    const copyType = command.substring(5) as CopyType;
     if (!isValidCopyType(copyType)) return;
-    const textToCopy = getCopyFormats(tab.url, tab.title)[copyType];
-
+    const clipboardItem = getLinkData(tab.url, tab.title, copyType);
     chrome.scripting.executeScript({
       target: { tabId: tab.id! },
-      func: (text: string) => {
-        navigator.clipboard.writeText(text);
+      func: (itemData: ClipboardItem) => {
+        navigator.clipboard.write([itemData]);
       },
-      args: [textToCopy],
+      args: [clipboardItem],
     });
   });
 });
