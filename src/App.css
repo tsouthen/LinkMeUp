@@ -54,11 +54,13 @@
   align-items: center;
   transition: background 0.2s, color 0.2s;
 }
-.popup.dark {
-  --popup-bg: #23272f;
-  --popup-fg: #f3f3f3;
-  background: var(--popup-bg);
-  color: var(--popup-fg);
+@media (prefers-color-scheme: dark) {
+  .popup {
+    --popup-bg: #23272f;
+    --popup-fg: #f3f3f3;
+    background: var(--popup-bg);
+    color: var(--popup-fg);
+  }
 }
 .popup button {
   width: 180px;

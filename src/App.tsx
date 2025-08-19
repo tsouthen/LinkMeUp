@@ -39,11 +39,9 @@ function App() {
       .then(() => setTimeout(() => setCopied(null), 1200))
   }
 
-  // Detect dark mode
-  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
 
   return (
-    <div className={isDark ? 'popup dark' : 'popup'}>
+    <div className="popup">
       <h2 style={{ marginBottom: 8 }}>Copy Link As...</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         <button onClick={() => handleCopy('html')}>{copied === 'html' ? 'Copied!' : 'HTML'}</button>
