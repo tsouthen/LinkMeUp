@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsc -p tsconfig.background.json && cp manifest.json dist/ && cp -R public/* dist/",
+    "build": "vite build && npm run build:scripts && cp manifest.json dist/ && cp -R public/* dist/",
+    "build:scripts": "tsc -p tsconfig.background.json && sed -i '' 's/^export //' dist/copyToClipboard.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { copyToClipboard } from './background';
+import { copyToClipboard } from './copyToClipboard';
 import './App.css'
 
 function App() {

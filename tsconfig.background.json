@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "strict": true
   },
-  "include": ["src/background.ts"]
+  "include": ["src/background.ts", "src/copyToClipboard.ts"]
 }

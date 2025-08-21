@@ -24,21 +24,25 @@
   "commands": {
     "copy-markdown": {
       "suggested_key": {
-        "default": "Ctrl+Shift+1"
+        "default": "Ctrl+Shift+M"
       },
       "description": "Copy link as Markdown"
     },
     "copy-html": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+2"
-      },
       "description": "Copy link as HTML"
     },
     "copy-text": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+3"
-      },
       "description": "Copy link as text"
     }
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "copyToClipboard.js"
+      ]
+    }
+  ]
 }
